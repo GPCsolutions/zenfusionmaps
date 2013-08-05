@@ -1,6 +1,7 @@
 <?php
-/* <one line to give the program's name and a brief idea of what it does.>
- * Copyright (C) <year>  <name of author>
+/*
+ * ZenFusion Maps - A Google Maps module for Dolibarr
+ * Copyright (C) 2013 Cédric Salvador <csalvador@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,75 +18,109 @@
  */
 
 /**
- * 	\file		admin/about.php
- * 	\ingroup	mymodule
- * 	\brief		This file is an example about page
- * 				Put some comments here
+ * \file admin/about.php
+ * \ingroup zenfusionmaps
+ * \brief Module about page
  */
-// Dolibarr environment
-$res = @include("../../main.inc.php"); // From htdocs directory
+$res = 0;
+// from standard dolibarr install
+if (! $res && file_exists("../../main.inc.php")) {
+        $res = @include("../../main.inc.php");
+}
+// from custom dolibarr install
+if (! $res && file_exists("../../../main.inc.php")) {
+        $res = @include("../../../main.inc.php");
+}
 if (! $res) {
-    $res = @include("../../../main.inc.php"); // From "custom" directory
+    die("Main include failed");
 }
 
+require_once '../core/modules/modZenFusionMaps.class.php';
+require_once '../lib/admin.lib.php';
 
-// Libraries
-require_once DOL_DOCUMENT_ROOT . "/core/lib/admin.lib.php";
-require_once '../lib/mymodule.lib.php';
+$langs->load("zenfusionmaps@zenfusionmaps");
+$langs->load("admin");
+$langs->load("help");
 
-dol_include_once('/mymodule/lib/php-markdown/markdown.php');
-
-
-//require_once "../class/myclass.class.php";
-// Translations
-$langs->load("mymodule@mymodule");
-
-// Access control
+// only readable by admin
 if (! $user->admin) {
     accessforbidden();
 }
 
-// Parameters
-$action = GETPOST('action', 'alpha');
-
-/*
- * Actions
- */
+$module = new modZenFusionMaps($db);
 
 /*
  * View
  */
-$page_name = "MyModuleAbout";
-llxHeader('', $langs->trans($page_name));
 
-// Subheader
-$linkback = '<a href="' . DOL_URL_ROOT . '/admin/modules.php">'
-    . $langs->trans("BackToModuleList") . '</a>';
-print_fiche_titre($langs->trans($page_name), $linkback);
+// Little folder on the html page
+llxHeader();
+/// Navigation in the modules
+$linkback = '<a href="' . DOL_URL_ROOT . '/admin/modules.php">';
+$linkback .= $langs->trans("BackToModuleList") . '</a>';
+// Folder icon title
+print_fiche_titre("ZenFusion", $linkback, 'setup');
 
-// Configuration header
-$head = mymoduleAdminPrepareHead();
+$head = zfPrepareHead();
+
 dol_fiche_head(
     $head,
     'about',
-    $langs->trans("Module10000Name"),
+    $langs->trans("Module105005Name"),
     0,
-    'mymodule@mymodule'
+    'maps@zenfusionmaps'
 );
 
-// About page goes here
-echo $langs->trans("MyModuleAboutPage");
+echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
+     '<em>', $langs->trans("Version"), ' ',
+ $langs->trans($module->version), '</em><br>',
+     '<em>&copy;2011-2012 GPC.solutions<br><em>',
+     '<a target="_blank" href="http://www.zenfusion.net/">',
+ '<img src="../img/logo_zf.png" alt="Logo ZenFusion"></a>',
 
-echo '<br>';
+     '<h3>', $langs->trans("Publisher"), '</h3>',
+     '<a target="_blank" href="http://www.gpcsolutions.fr">',
+ '<img src="../img/logo_gpc.png" alt="GPC.solutions"></a>',
+     '<address>Technopole Hélioparc<br>',
+ '2 avenue du Président Pierre Angot<br>',
+ '64053 PAU CEDEX 9<br>',
+ 'FRANCE<br>',
+ '+33 (0)5 35 53 97 12</address>',
+ '<a href="mailto:contact@gpcsolutions.fr">contact@gpcsolutions.fr</a>',
 
-$buffer = file_get_contents(dol_buildpath('/mymodule/README.md', 0));
-echo Markdown($buffer);
+     '<h3>', $langs->trans("License"), '</h3>',
+     '<a target="_blank" href="http://www.gnu.org/licenses/gpl-3.0.html">',
+ '<img src="../img/gplv3.png" alt="GPL v.3"></a>',
 
-echo '<br>',
-'<a href="' . dol_buildpath('/mymodule/COPYING', 1) . '">',
-'<img src="' . dol_buildpath('/mymodule/img/gplv3.png', 1) . '"/>',
-'</a>';
+     '<h3>', $langs->trans("Credits"), '</h3>',
 
+     '<h4>', $langs->trans("Development"), '</h4>',
+
+     '<ul>',
+     '<li>Raphaël Doursenaud, ', $langs->trans('ProjectManager'), '</li>',
+     '<li>Cédric Salvador, ', $langs->trans('SoftwareEngineer'), '</li>',
+     '</ul>',
+
+     '<h4>' . $langs->trans("Ressources") . '</h4>',
+
+     '<ul>',
+ '<li>Contacts logo<br>',
+ '&copy; <a target="_blank" href="http://www.gnome.org">GNOME Project</a><br>',
+ '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">',
+ '<img src="../img/lgplv3.png" alt="LGPLv3"></a>',
+ '<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/legalcode">',
+ '<img src="../img/ccbysa.png" alt="Creative Commons Attribution Share Alike 3.0 license">',
+ '</a></li>',
+ '<li>GPLv3 logo<br>',
+ '&copy;2007, 2008 ',
+ '<a target="_blank" href="http://fsf.org">Free Software Foundation</a>',
+ '</li>',
+ '<li>ZenFusion logo<br>',
+ '&copy;2011 GPC.solutions<br>',
+ 'Trademark Pending',
+ '</li>',
+ '<li>GPC.solutions logo<br>',
+ '&copy;2010-2012 GPC.solutions',
+ '</li>',
+ '</ul>';
 llxFooter();
-
-$db->close();
