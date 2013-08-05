@@ -66,7 +66,7 @@ class modZenFusionMaps extends DolibarrModules
             'hooks' => array('thirdpartycard', 'contactcard')
         );
         $this->dirs = array();
-        $this->config_page_url = array("conf.php@zenfusionmaps");
+        $this->config_page_url = array("about.php@zenfusionmaps");
         $this->depends = array("modZenFusionOAuth");
         $this->requiredby = array();
         $this->phpmin = array(5, 3);
