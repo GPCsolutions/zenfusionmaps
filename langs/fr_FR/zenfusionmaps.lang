@@ -1,0 +1,24 @@
+# Dolibarr language file - fr_FR - ZenFusion Maps
+CHARSET=UTF-8
+# Module
+Module105005Name=ZenFusion Maps
+Module105005Desc=Synchronisation avec Google Maps
+# Admin
+Config=Configuration
+Support=Assistance
+About=À propos
+# Config
+## Messages
+Saved=Enregistré
+UnexpectedError=Erreur inattendue
+# About
+Version=Version
+Publisher=Éditeur
+License=Licence
+Credits=Crédits
+Development=Développement
+ProjectManager=chef de projet
+SoftwareEngineer=ingénieur développement
+Ressources=Ressources
+MissingMod=Module manquant: ZenFusion OAuth
+MissingCURL=php-curl n'est pas installé
