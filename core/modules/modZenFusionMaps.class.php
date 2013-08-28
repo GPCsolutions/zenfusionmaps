@@ -146,7 +146,6 @@ class modZenFusionMaps extends DolibarrModules
     {
         $sql = array();
         //removeScope(GOOGLE_MAPS_SCOPE); no need for scope for now
-
         return $this->_remove($sql);
     }
 

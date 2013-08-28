@@ -179,6 +179,7 @@ class ActionsZenFusionMaps
                            true
                            );
         $this->resprints .= $picto . '</a>';
+
         return 1;
     }
 
