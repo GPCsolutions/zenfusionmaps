@@ -115,6 +115,7 @@ class modZenFusionMaps extends DolibarrModules
             $this->_init($sql);
         } else {
             if ($err || $exists < $num) {
+                $langs->load('zenfusionmaps@zenfusionmaps');
                 $mesg = $langs->trans("MissingMod");
                 if (DOL_VERSION >= '3.3') {
                     setEventMessage($mesg, 'errors');
