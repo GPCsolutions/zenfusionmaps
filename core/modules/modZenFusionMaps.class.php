@@ -114,8 +114,8 @@ class modZenFusionMaps extends DolibarrModules
             //addScope(GOOGLE_MAPS_SCOPE); no need for scope for now
             $this->_init($sql);
         } else {
+            $langs->load('zenfusionmaps@zenfusionmaps');
             if ($err || $exists < $num) {
-                $langs->load('zenfusionmaps@zenfusionmaps');
                 $mesg = $langs->trans("MissingMod");
                 if (DOL_VERSION >= '3.3') {
                     setEventMessage($mesg, 'errors');
