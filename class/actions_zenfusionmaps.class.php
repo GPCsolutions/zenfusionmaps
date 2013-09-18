@@ -172,7 +172,8 @@ class ActionsZenFusionMaps
         $address = $object;
         $address = str_replace('<br>', ' ', $address);
         $address = str_replace("\n", ' ', $address);
-        $address .= ' ' . $obj->zip . ' ' . $obj->town . ' ' . $obj->country;
+        //preg_replace to filter out CEDEXes because Google can't process them
+        $address .= ' ' . $obj->zip . ' ' . preg_replace('/\sCEDEX.*$/i', '', $obj->town) . ' ' . $obj->country;
         $address = str_replace(' ', '+', $address);
         $googleurl = 'https://maps.google.com/maps?q=' . $address . '&hl=' . $this->getLocale();
         $this->resprints = '<a href="' . $googleurl . '" target="_blank">' . nl2br($object);
