@@ -1,0 +1,22 @@
+# Dolibarr language file - en_US - ZenFusion Maps
+CHARSET=UTF-8
+# Module
+Module105005Name=ZenFusion Maps
+Module105005Desc=Synchronization with Google Maps
+# Admin
+Config=Configuration
+Support=Support
+About=About
+# Config
+## Messages
+Saved=Saved
+UnexpectedError=Unexpected error
+# About
+Version=Version
+Publisher=Publisher
+Licence=Licence
+Credits=Credits
+Development=Development
+ProjectManager=project manager
+SoftwareEngineer=software engineer
+Ressources=Resources
