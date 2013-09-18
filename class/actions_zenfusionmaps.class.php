@@ -169,7 +169,10 @@ class ActionsZenFusionMaps
             $obj = new Adherent($this->db);
         }
         $obj->fetch($id);
-        $address = $object . ' ' . $obj->zip . ' ' . $obj->town;
+        $address = $object;
+        $address = str_replace('<br>', ' ', $address);
+        $address = str_replace("\n", ' ', $address);
+        $address .= ' ' . $obj->zip . ' ' . $obj->town . ' ' . $obj->country;
         $address = str_replace(' ', '+', $address);
         $googleurl = 'https://maps.google.com/maps?q=' . $address . '&hl=' . $this->getLocale();
         $this->resprints = '<a href="' . $googleurl . '" target="_blank">' . nl2br($object);
