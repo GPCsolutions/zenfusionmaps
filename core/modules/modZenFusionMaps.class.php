@@ -57,7 +57,7 @@ class modZenFusionMaps extends DolibarrModules
         $this->family = "other";
         $this->name = preg_replace('/^mod/i', '', get_class($this));
         $this->description = "Sync with Google Maps";
-        $this->version = 'development';
+        $this->version = '0.0.1';
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         $this->special = 1;
         $this->picto = 'maps@zenfusionmaps';
