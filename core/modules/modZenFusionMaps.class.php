@@ -91,20 +91,21 @@ class modZenFusionMaps extends DolibarrModules
      */
     public function init()
     {
-        global $conf, $langs;
+        global $langs;
         // We set the scope we need
         $sql = array();
-        $result = $this->load_tables();
+        $this->loadTables();
         // Activation des modules dont le module depend
         $modulesdir[] = DOL_DOCUMENT_ROOT . '/extensions/zenfusionoauth/core/modules/';
         $modulesdir[] = DOL_DOCUMENT_ROOT . '/custom/zenfusionoauth/core/modules/';
         $modulesdir[] = DOL_DOCUMENT_ROOT . '/core/modules/';
         $num = count($this->depends);
         $exists = 0;
+        $err = '';
         foreach ($modulesdir as $dir) {
             for ($i = 0; $i < $num; $i++) {
                 if (file_exists($dir.$this->depends[$i].".class.php")) {
-                    $err += activateModule($this->depends[$i]);
+                    $err .= activateModule($this->depends[$i]);
                     $exists++;
                 }
             }
@@ -115,6 +116,7 @@ class modZenFusionMaps extends DolibarrModules
             $this->_init($sql);
         } else {
             $langs->load('zenfusionmaps@zenfusionmaps');
+            $msg = '';
             if ($err || $exists < $num) {
                 $mesg = $langs->trans("MissingMod");
                 if (DOL_VERSION >= '3.3') {
@@ -133,7 +135,6 @@ class modZenFusionMaps extends DolibarrModules
                 }
             }
             header("Location: modules.php?mode=interfaces" . $msg);
-            exit;
         }
     }
 
@@ -157,7 +158,7 @@ class modZenFusionMaps extends DolibarrModules
      * This function is called by this->init.
      * \return int <=0 if KO, >0 if OK
      */
-    public function load_tables()
+    public function loadTables()
     {
         return $this->_load_tables('/zenfusionmaps/sql/');
     }

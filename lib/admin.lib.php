@@ -29,26 +29,25 @@
  */
 function zfPrepareHead()
 {
-    global $langs, $conf, $user;
+    global $langs, $conf;
     $h = 0;
     $head = array();
 
     $head[$h][0] = dol_buildpath("/zenfusionmaps/admin/conf.php", 1);
     $head[$h][1] = $langs->trans("Config");
     $head[$h][2] = 'conf';
-    $h ++;
+    $h++;
 
     if ($conf->global->ZF_SUPPORT) {
         $head[$h][0] = dol_buildpath("/zenfusionmaps/admin/support.php", 1);
         $head[$h][1] = $langs->trans("HelpCenter");
         $head[$h][2] = 'help';
-        $h ++;
+        $h++;
     }
 
     $head[$h][0] = dol_buildpath("/zenfusionmaps/admin/about.php", 1);
     $head[$h][1] = $langs->trans("About");
     $head[$h][2] = 'about';
-    $h ++;
 
     return $head;
 }

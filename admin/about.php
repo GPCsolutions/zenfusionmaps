@@ -38,6 +38,8 @@ if (! $res) {
 require_once '../core/modules/modZenFusionMaps.class.php';
 require_once '../lib/admin.lib.php';
 
+global $db, $langs, $user;
+
 $langs->load("zenfusionmaps@zenfusionmaps");
 $langs->load("admin");
 $langs->load("help");
