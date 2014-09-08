@@ -3,7 +3,7 @@ My Module
 
 This is a full featured module template for Dolibarr
 
-Licence
+License
 -------
 GPLv3 or (at your option) any later version.
 
@@ -83,6 +83,6 @@ From your browser:
 - the module is under one of the tabs
 - you should now be able to enable the new module
 
-Other Licences
+Other Licenses
 --------------
 Uses Michel Fortin's PHP Markdown Licensed under BSD to display this README.
