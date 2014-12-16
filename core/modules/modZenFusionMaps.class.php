@@ -72,7 +72,7 @@ class modZenFusionMaps extends DolibarrModules
         $this->requiredby = array();
         $this->conflictwith = array();
         $this->phpmin = array(5, 3);
-        $this->need_dolibarr_version = array(3, 2);
+        $this->need_dolibarr_version = array(3, 5);
         $this->langfiles = array("zenfusionmaps@zenfusionmaps");
         $this->const = array();
         $this->tabs = array();
