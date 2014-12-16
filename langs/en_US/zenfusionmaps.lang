@@ -2,15 +2,9 @@
 CHARSET=UTF-8
 # Module
 Module105005Name=ZenFusion Maps
-Module105005Desc=Synchronization with Google Maps
+Module105005Desc=Link addresses to Google Maps
 # Admin
-Config=Setup
-Support=Support
 About=About
-# Config
-## Messages
-Saved=Saved
-UnexpectedError=Unexpected error
 # About
 Version=Version
 Publisher=Publisher
