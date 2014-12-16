@@ -63,7 +63,13 @@ class modZenFusionMaps extends DolibarrModules
         $this->special = 1; // Interface
         $this->picto = 'maps@zenfusionmaps';
         $this->module_parts = array(
-            'hooks' => array('thirdpartycard', 'contactcard', 'membercard')
+            'hooks' => array(
+                'thirdpartycard',
+                'contactcard',
+                'membercard',
+                'commcard',
+                'suppliercard'
+            )
         );
         $this->dirs = array();
         $this->config_page_url = array("about.php@zenfusionmaps");
