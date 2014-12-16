@@ -24,26 +24,14 @@
  */
 
 /**
- * \function zfPrepareHead
- * \brief Display tabs in module admin page
+ * Display tabs in module admin page
  */
 function zfPrepareHead()
 {
-    global $langs, $conf;
+    global $langs;
+
     $h = 0;
     $head = array();
-
-    $head[$h][0] = dol_buildpath("/zenfusionmaps/admin/conf.php", 1);
-    $head[$h][1] = $langs->trans("Config");
-    $head[$h][2] = 'conf';
-    $h++;
-
-    if ($conf->global->ZF_SUPPORT) {
-        $head[$h][0] = dol_buildpath("/zenfusionmaps/admin/support.php", 1);
-        $head[$h][1] = $langs->trans("HelpCenter");
-        $head[$h][2] = 'help';
-        $h++;
-    }
 
     $head[$h][0] = dol_buildpath("/zenfusionmaps/admin/about.php", 1);
     $head[$h][1] = $langs->trans("About");

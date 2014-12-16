@@ -1,7 +1,8 @@
 <?php
-
 /*
- * Copyright (C) 2013      Cédric Salvador      <csalvador@gpcsolutions.fr>
+ * ZenFusion Maps - A Google Maps module for Dolibarr
+ * Copyright (C) 2013 Cédric Salvador       <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2014 Raphaël Doursenaud    <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 require_once DOL_DOCUMENT_ROOT . '/core/lib/functions.lib.php';
 
 /**
@@ -36,7 +38,7 @@ class ActionsZenFusionMaps
     /**
      *  Constructor
      *
-     *  @param	DoliDB	$db		Database handler
+     * @param DoliDB $db Database handler
      */
     public function __construct($db)
     {
@@ -46,7 +48,7 @@ class ActionsZenFusionMaps
     /**
      * Get Google locale matching Dolibarr language
      *
-     * @return string
+     * @return string Google equivalent locale
      */
     public function getGoogleLocale()
     {
@@ -170,47 +172,76 @@ class ActionsZenFusionMaps
     }
 
     /**
+     * Hook replacing address output
+     *
      * @param string $parameters Hook parameters
      * @param CommonObject $object Current object
      * @param string $action Current action
+     *
      * @return int Status
      */
     public function printAddress($parameters, $object, &$action)
     {
-        //$object is just the address
+        /**
+         * @var $object string The address
+         */
         $element = $parameters['element'];
         $id = $parameters['id'];
-        $obj = null;
+
+        $staticobject = null;
         if ($element == 'thirdparty') {
             require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-            $obj = new Societe($this->db);
+            $staticobject = new Societe($this->db);
         } elseif ($element == 'contact') {
             require_once DOL_DOCUMENT_ROOT . '/contact/class/contact.class.php';
-            $obj = new Contact($this->db);
+            $staticobject = new Contact($this->db);
         } elseif ($element == 'member') {
             require_once DOL_DOCUMENT_ROOT . '/adherent/class/adherent.class.php';
-            $obj = new Adherent($this->db);
+            $staticobject = new Adherent($this->db);
         } else {
             // Not for us, bail out without error
-            return 1;
+            return 0;
         }
-        $obj->fetch($id);
-        $address = $object;
-        $address = str_replace('<br>', ' ', $address);
-        $address = str_replace("\n", ' ', $address);
-        //preg_replace to filter out CEDEXes because Google can't process them
-        $address .= ' ' . $obj->zip . ' ' . preg_replace('/\sCEDEX.*$/i', '', $obj->town) . ' ' . $obj->country;
-        $address = str_replace(' ', '+', $address);
-        $googleurl = 'https://maps.google.com/maps?q=' . $address . '&hl=' . $this->getGoogleLocale();
-        $this->resprints = '<a href="' . $googleurl . '" target="_blank">' . nl2br($object);
+
+        // Get the full object so we can extract zip, town and coutry
+        $staticobject->fetch($id);
+
+        $maps_address = $object;
+
+        // Get rid of unwanted line returns
+        $maps_address = str_replace('<br>', ' ', $maps_address);
+        $maps_address = str_replace("\n", ' ', $maps_address);
+
+        $maps_address .= ' ' . $staticobject->zip;
+
+        // Filter out CEDEXes because Google can't process them
+        $maps_address .= ' ' . preg_replace('/\sCEDEX.*$/i', '', $staticobject->town);
+        $maps_address .= ' ' . $staticobject->country;
+
+        // Build maps search query from the fields
+        $maps_address = str_replace(' ', '+', $maps_address);
+
+        // Build localized Google Maps URL
+        $googleurl = 'https://maps.google.com/maps?q=' . $maps_address . '&hl=' . $this->getGoogleLocale();
+
+        // Print enhanced address with a link to Google Maps
+        $this->resprints = '<a href="' . $googleurl . '" target="_blank">';
+
+        // Add a nice Google Maps marker picto to let the user know the feature is there
         $picto = img_picto(
             'Google Maps',
             dol_buildpath('/zenfusionmaps/img/marker.png', 1),
             '',
             true
         );
-        $this->resprints .= $picto . '</a>';
+        // FIXME: move style to a proper CSS file if possible
+        $this->resprints .= '<div style="float: left; margin-right: 5px;">' . $picto . '</div>';
 
-        return 1;
+        // Keep original adress formatting
+        $this->resprints .= nl2br($object);
+
+        $this->resprints .= '</a>';
+
+        return 1; // Replace Dolibarr output
     }
 }
