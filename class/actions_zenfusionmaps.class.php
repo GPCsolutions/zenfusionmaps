@@ -196,7 +196,7 @@ class ActionsZenFusionMaps
             require_once DOL_DOCUMENT_ROOT . '/contact/class/contact.class.php';
             $staticobject = new Contact($this->db);
         } elseif ($element == 'member') {
-            require_once DOL_DOCUMENT_ROOT . '/adherent/class/adherent.class.php';
+            require_once DOL_DOCUMENT_ROOT . '/adherents/class/adherent.class.php';
             $staticobject = new Adherent($this->db);
         } else {
             // Not for us, bail out without error
