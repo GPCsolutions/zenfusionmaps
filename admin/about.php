@@ -1,7 +1,8 @@
 <?php
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
- * Copyright (C) 2013 Cédric Salvador <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2011-2014  Raphaël Doursenaud  <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2013       Cédric Salvador     <csalvador@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
  * \ingroup zenfusionmaps
  * \brief Module about page
  */
+
 $res = 0;
 // from standard dolibarr install
 if (! $res && file_exists("../../main.inc.php")) {
@@ -76,7 +78,7 @@ dol_fiche_head(
 echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
      '<em>', $langs->trans("Version"), ' ',
  $langs->trans($module->version), '</em><br>',
-     '<em>&copy;2011-2012 GPC.solutions<br><em>',
+     '<em>&copy;2011-2014 GPC.solutions<br><em>',
      '<a target="_blank" href="http://www.zenfusion.net/">',
  '<img src="../img/logo_zf.png" alt="Logo ZenFusion"></a>',
 
@@ -122,7 +124,7 @@ echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
  'Trademark Pending',
  '</li>',
  '<li>GPC.solutions logo<br>',
- '&copy;2010-2012 GPC.solutions',
+ '&copy;2010-2014 GPC.solutions',
  '</li>',
  '</ul>';
 llxFooter();

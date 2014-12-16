@@ -1,7 +1,8 @@
 <?php
-
 /*
- * Copyright (C) 2013      Cédric Salvador      <csalvador@gpcsolutions.fr>
+ * ZenFusion Maps - A Google Maps module for Dolibarr
+ * Copyright (C) 2013 Cédric Salvador       <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2014 Raphaël Doursenaud    <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 require_once DOL_DOCUMENT_ROOT . '/core/lib/functions.lib.php';
 
 /**
@@ -36,7 +38,7 @@ class ActionsZenFusionMaps
     /**
      *  Constructor
      *
-     *  @param	DoliDB	$db		Database handler
+     * @param DoliDB $db Database handler
      */
     public function __construct($db)
     {
@@ -46,7 +48,7 @@ class ActionsZenFusionMaps
     /**
      * Get Google locale matching Dolibarr language
      *
-     * @return string
+     * @return string Google equivalent locale
      */
     public function getGoogleLocale()
     {
@@ -170,14 +172,19 @@ class ActionsZenFusionMaps
     }
 
     /**
+     * Hook replacing address output
+     *
      * @param string $parameters Hook parameters
      * @param CommonObject $object Current object
      * @param string $action Current action
+     *
      * @return int Status
      */
     public function printAddress($parameters, $object, &$action)
     {
-        //$object is just the address
+        /**
+         * @var $object string The address
+         */
         $element = $parameters['element'];
         $id = $parameters['id'];
         $obj = null;
