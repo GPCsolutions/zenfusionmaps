@@ -136,8 +136,11 @@ foreach ($list as $entry) {
  * VIEW
  */
 
-// FIXME: add translation string
-llxHeader('', $langs->trans('ThirdpartiesMap'), '');
+if('thirdparties' === $mode) {
+	llxHeader( '', $langs->trans( 'ThirdpartiesMap' ), '' );
+} elseif('contacts' === $mode) {
+	llxHeader( '', $langs->trans( 'ContactsMap' ), '' );
+}
 
 /**
  * Display geocoded addresses

@@ -14,3 +14,7 @@ Development=Développement
 ProjectManager=chef de projet
 SoftwareEngineer=ingénieur développement
 Ressources=Ressources
+# Map
+Map=Carte
+ThirdpartiesMap=Carte des tiers
+ContactsMap=Carte des contacts
