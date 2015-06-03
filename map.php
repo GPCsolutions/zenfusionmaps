@@ -97,7 +97,9 @@ if ('thirdparties' === $mode) {
  */
 
 $geocoding = new \zenfusion\maps\Geocoding('json');
-$france = $geocoding->getCountry('France')[0];
+$france = $geocoding->getCountry('France');
+// PHP 5.3 compat
+$france = $france[0];
 
 $data = array();
 
@@ -113,7 +115,9 @@ foreach ($list as $entry) {
 		$geocoding->addCountry($entry->country);
 	$address = $entry->address;
 	$address .= ($address?',':'') . $entry->town;
-	$position = $geocoding->getByAddress($address)[0]->geometry->location;
+	$position = $geocoding->getByAddress($address);
+	// PHP 5.3 compat
+	$position = $position[0]->geometry->location;
 
 	$data[] = array(
 		'position' => $position,
