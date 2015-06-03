@@ -69,7 +69,8 @@ class modZenFusionMaps extends DolibarrModules
                 'membercard',
                 'commcard',
                 'suppliercard'
-            )
+            ),
+            'menus' => true,
         );
         $this->dirs = array();
         $this->config_page_url = array("about.php@zenfusionmaps");
@@ -90,6 +91,26 @@ class modZenFusionMaps extends DolibarrModules
         $this->rights[0][3] = 0;
         $this->rights[0][4] = 'use';
         $this->menu = array();
+        $this->menu[] = array(
+            'fk_menu' => 'fk_mainmenu=companies,fk_leftmenu=thirdparties',
+            'type' => 'left',
+            'titre' => 'Map',
+            'url' => 'zenfusionmaps/map.php?mode=thirdparties',
+            'langs' => 'zenfusionmaps@zenfusionmaps',
+            'position' => '100',
+            'enabled' => '$conf->zenfusionmaps->enabled',
+            'perms' => '$user->rights->societe->lire'
+        );
+        $this->menu[] = array(
+            'fk_menu' => 'fk_mainmenu=companies,fk_leftmenu=contacts',
+            'type' => 'left',
+            'titre' => 'Map',
+            'url' => 'zenfusionmaps/map.php?mode=contacts',
+            'langs' => 'zenfusionmaps@zenfusionmaps',
+            'position' => '100',
+            'enabled' => '$conf->zenfusionmaps->enabled',
+            'perms' => '$user->rights->societe->lire'
+        );
     }
 
     /**
