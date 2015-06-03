@@ -1,0 +1,12 @@
+{
+  "name": "zenfusionmaps",
+  "version": "2.0.0a",
+  "homepage": "https://github.com/GPCsolutions/zenfusionmaps",
+  "authors": [
+    "Raphaël Doursenaud <rdoursenaud@gpcsolutions.fr>"
+  ],
+  "license": "GPLv3",
+  "dependencies": {
+    "js-marker-clusterer": "*"
+  }
+}

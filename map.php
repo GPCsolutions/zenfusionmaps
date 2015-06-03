@@ -175,7 +175,7 @@ llxHeader('', $langs->trans('ThirdpartiesMap'), '');
 		function loadMarkerClustererScript() {
 			var script = document.createElement('script');
 			script.type = 'text/javascript';
-			script.src = '<?php echo dol_buildpath('zenfusionmaps/js/markerclusterer_compiled.js', 2) ?>';
+			script.src = '<?php echo dol_buildpath('zenfusionmaps/js/js-marker-clusterer/src/markerclusterer_compiled.js', 2) ?>';
 			document.body.appendChild(script);
 		}
 
