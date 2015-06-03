@@ -1,8 +1,8 @@
 <?php
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
- * Copyright (C) 2013 Cédric Salvador       <csalvador@gpcsolutions.fr>
- * Copyright (C) 2014 Raphaël Doursenaud    <rdoursenaud@gpcsolutions.fr>
+ * Copyright (C) 2013       Cédric Salvador       <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2014-2015  Raphaël Doursenaud    <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ class modZenFusionMaps extends DolibarrModules
         $this->family = "other";
         $this->name = preg_replace('/^mod/i', '', get_class($this));
         $this->description = "Google Maps";
-        $this->version = '1.0.0';
+        $this->version = '2.0.0a';
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         $this->special = 1; // Interface
         $this->picto = 'maps@zenfusionmaps';
