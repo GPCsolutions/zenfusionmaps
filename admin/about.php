@@ -124,4 +124,6 @@ echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
  '&copy;2010-2014 GPC.solutions',
  '</li>',
  '</ul>';
+
+dol_fiche_end();
 llxFooter();
