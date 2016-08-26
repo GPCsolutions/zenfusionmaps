@@ -1,8 +1,8 @@
 <?php
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
- * Copyright (C) 2013 Cédric Salvador       <csalvador@gpcsolutions.fr>
- * Copyright (C) 2014 Raphaël Doursenaud    <rdoursenaud@gpcsolutions.fr>
+ * Copyright (C) 2013       Cédric Salvador     <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2014-2016  Raphaël Doursenaud  <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ class modZenFusionMaps extends DolibarrModules
         $this->family = "other";
         $this->name = preg_replace('/^mod/i', '', get_class($this));
         $this->description = "Google Maps";
-        $this->version = '1.0.0';
+        $this->version = '1.1.0';
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         $this->special = 1; // Interface
         $this->picto = 'maps@zenfusionmaps';
@@ -97,11 +97,12 @@ class modZenFusionMaps extends DolibarrModules
      * The init function add constants, boxes, permissions and menus (defined in constructor) into Dolibarr database.
      * It also creates data directories.
      *
-     * @param string $options Options when enabling module ('', 'noboxes')
-     *
+     * @param string $options Options when enabling module ('', 'newboxdefonly', 'noboxes')
+     *                        'noboxes' = Do not insert boxes
+     *                        'newboxdefonly' = For boxes, insert def of boxes only and not boxes activation
      * @return int 1 if OK, 0 if KO
      */
-    public function init($options='')
+    public function init($options = '')
     {
         $sql = array();
         return $this->_init($sql, $options);
@@ -112,11 +113,12 @@ class modZenFusionMaps extends DolibarrModules
      * Remove from database constants, boxes and permissions from Dolibarr database.
      * Data directories are not deleted.
      *
+     * @param string $options Options when enabling module ('', 'noboxes')
      * @return int 1 if OK, 0 if KO
      */
-    public function remove()
+    public function remove($options = '')
     {
         $sql = array();
-        return $this->_remove($sql);
+        return $this->_remove($sql, $options);
     }
 }

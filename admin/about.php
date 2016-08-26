@@ -1,7 +1,7 @@
 <?php
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
- * Copyright (C) 2013-2014  Raphaël Doursenaud  <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2013-2016  Raphaël Doursenaud  <csalvador@gpcsolutions.fr>
  * Copyright (C) 2013       Cédric Salvador     <csalvador@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,17 +24,9 @@
  * \brief Module about page
  */
 
-$res = 0;
-// from standard dolibarr install
-if (! $res && file_exists("../../main.inc.php")) {
-        $res = @include("../../main.inc.php");
-}
-// from custom dolibarr install
-if (! $res && file_exists("../../../main.inc.php")) {
-        $res = @include("../../../main.inc.php");
-}
-if (! $res) {
-    die("Main include failed");
+// Load Dolibarr environment
+if (false === (@include '../../main.inc.php')) {  // From htdocs directory
+    require '../../../main.inc.php'; // From "custom" directory
 }
 
 require_once '../core/modules/modZenFusionMaps.class.php';
@@ -78,7 +70,7 @@ dol_fiche_head(
 echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
      '<em>', $langs->trans("Version"), ' ',
  $langs->trans($module->version), '</em><br>',
-     '<em>&copy;2013-2014 GPC.solutions<br><em>',
+     '<em>&copy;2013-2016 GPC.solutions<br><em>',
      '<a target="_blank" href="http://www.zenfusion.net/">',
  '<img src="../img/logo_zf.png" alt="Logo ZenFusion"></a>',
 
@@ -124,4 +116,6 @@ echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
  '&copy;2010-2014 GPC.solutions',
  '</li>',
  '</ul>';
+
+dol_fiche_end();
 llxFooter();

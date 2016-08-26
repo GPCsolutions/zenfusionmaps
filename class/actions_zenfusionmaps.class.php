@@ -1,8 +1,8 @@
 <?php
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
- * Copyright (C) 2013 Cédric Salvador       <csalvador@gpcsolutions.fr>
- * Copyright (C) 2014 Raphaël Doursenaud    <rdoursenaud@gpcsolutions.fr>
+ * Copyright (C) 2013       Cédric Salvador     <csalvador@gpcsolutions.fr>
+ * Copyright (C) 2014-2016  Raphaël Doursenaud  <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -189,7 +189,7 @@ class ActionsZenFusionMaps
         $id = $parameters['id'];
 
         $staticobject = null;
-        if ($element == 'thirdparty') {
+        if ('thirdparty' == $element || 'societe' == $element) {
             require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
             $staticobject = new Societe($this->db);
         } elseif ($element == 'contact') {
@@ -203,7 +203,7 @@ class ActionsZenFusionMaps
             return 0;
         }
 
-        // Get the full object so we can extract zip, town and coutry
+        // Get the full object so we can extract zip, town and country
         $staticobject->fetch($id);
 
         $maps_address = $object;
