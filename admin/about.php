@@ -70,7 +70,7 @@ dol_fiche_head(
 echo '<h3>', $langs->trans("Module105005Name"), '</h3>',
      '<em>', $langs->trans("Version"), ' ',
  $langs->trans($module->version), '</em><br>',
-     '<em>&copy;2013-2014 GPC.solutions<br><em>',
+     '<em>&copy;2013-2016 GPC.solutions<br><em>',
      '<a target="_blank" href="http://www.zenfusion.net/">',
  '<img src="../img/logo_zf.png" alt="Logo ZenFusion"></a>',
 

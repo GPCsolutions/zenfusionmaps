@@ -20,7 +20,7 @@ Prerequisites
 License
 -------
 
-Copyright (C) 2013-2014 GPC.solutions
+Copyright (C) 2013-2016 GPC.solutions
 
 GPLv3 or (at your option) any later version.
 
