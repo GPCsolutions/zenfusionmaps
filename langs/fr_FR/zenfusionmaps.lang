@@ -3,6 +3,8 @@ CHARSET=UTF-8
 # Module
 Module105005Name=ZenFusion Maps
 Module105005Desc=Lien vers Google Maps sur les adresses
+# Permissions
+Permission7685239=Utiliser ZenFusion Maps
 # Admin
 About=À propos
 # About
