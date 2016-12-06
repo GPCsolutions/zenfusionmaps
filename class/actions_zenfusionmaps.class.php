@@ -182,6 +182,8 @@ class ActionsZenFusionMaps
      */
     public function printAddress($parameters, $object, &$action)
     {
+        require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
+
         /**
          * @var $object string The address
          */
@@ -206,20 +208,32 @@ class ActionsZenFusionMaps
         // Get the full object so we can extract zip, town and country
         $staticobject->fetch($id);
 
+        $dolibarr_version = versiondolibarrarray();
+
         $maps_address = $object;
 
         // Get rid of unwanted line returns
         $maps_address = str_replace('<br>', ' ', $maps_address);
         $maps_address = str_replace("\n", ' ', $maps_address);
 
-        $maps_address .= ' ' . $staticobject->zip;
 
-        // Filter out CEDEXes because Google can't process them
-        $maps_address .= ' ' . preg_replace('/\sCEDEX.*$/i', '', $staticobject->town);
-        $maps_address .= ' ' . $staticobject->country;
+        if (($dolibarr_version[0] == 3 && $dolibarr_version[1] <= 8) || $dolibarr_version[0] < 3) { // DOL_VERSION <= 3.8
 
-        // Build maps search query from the fields
-        $maps_address = str_replace(' ', '+', $maps_address);
+            $maps_address .= ' ' . $staticobject->zip;
+
+            // Filter out CEDEXes because Google can't process them
+            $maps_address .= ' ' . preg_replace('/\sCEDEX\s.*$/i', '', $staticobject->town);
+            $maps_address .= ' ' . $staticobject->country;
+
+            // Build maps search query from the fields
+            $maps_address = str_replace(' ', '+', $maps_address);
+        } else { // DOL_VERSION > 3.8
+            // Filter out CEDEXes because Google can't process them
+            $maps_address = ' ' . preg_replace('/\sCEDEX\s.*$/i', '', $maps_address);
+
+            // Build maps search query from the fields
+            $maps_address = str_replace(', ', '+', $maps_address);
+        }
 
         // Build localized Google Maps URL
         $googleurl = 'https://maps.google.com/maps?q=' . $maps_address . '&hl=' . $this->getGoogleLocale();
@@ -227,15 +241,18 @@ class ActionsZenFusionMaps
         // Print enhanced address with a link to Google Maps
         $this->resprints = '<a href="' . $googleurl . '" target="_blank">';
 
-        // Add a nice Google Maps marker picto to let the user know the feature is there
-        $picto = img_picto(
-            'Google Maps',
-            dol_buildpath('/zenfusionmaps/img/marker.png', 1),
-            '',
-            true
-        );
-        // FIXME: move style to a proper CSS file if possible
-        $this->resprints .= '<div style="float: left; margin-right: 5px;">' . $picto . '</div>';
+        if (($dolibarr_version[0] == 3 && $dolibarr_version[1] <= 8) || $dolibarr_version[0] < 3) { // DOL_VERSION <= 3.8
+            // Add a nice Google Maps marker picto to let the user know the feature is there
+            $picto = img_picto(
+                'Google Maps',
+                dol_buildpath('/zenfusionmaps/img/marker.png', 1),
+                '',
+                true
+            );
+
+            // FIXME: move style to a proper CSS file if possible
+            $this->resprints .= '<div style="float: left; margin-right: 5px;">' . $picto . '</div>';
+        }
 
         // Keep original adress formatting
         $this->resprints .= nl2br($object);
