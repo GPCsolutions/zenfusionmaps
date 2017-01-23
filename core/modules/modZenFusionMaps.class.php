@@ -64,7 +64,7 @@ class modZenFusionMaps extends DolibarrModules
         $this->descriptionlong = "Add links to Google Maps on addresses.";
         $this->editor_name = 'GPC.solutions';
         $this->editor_url = 'https://www.gpcsolutions.fr';
-        $this->version = '1.1.0';
+        $this->version = '1.2.0';
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         $this->special = 1; // Interface
         $this->picto = 'maps@zenfusionmaps';
