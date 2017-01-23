@@ -23,7 +23,9 @@ require_once DOL_DOCUMENT_ROOT . '/core/lib/functions.lib.php';
 /**
  * Class ActionsZenFusionMaps
  */
+// @codingStandardsIgnoreStart Dolibarr can't import classes in a namespace yet.
 class ActionsZenFusionMaps
+// @codingStandardsIgnoreEnd
 {
     /**
      * @var DoliDB Database handler

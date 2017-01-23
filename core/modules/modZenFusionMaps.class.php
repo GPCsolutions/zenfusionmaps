@@ -42,7 +42,9 @@ include_once DOL_DOCUMENT_ROOT . "/core/modules/DolibarrModules.class.php";
 /**
  * Describes and activates Zenfusion Maps module
  */
+// @codingStandardsIgnoreStart Dolibarr modules classes need to start with a lower case.
 class modZenFusionMaps extends DolibarrModules
+// @codingStandardsIgnoreEnd
 {
 
     /**
