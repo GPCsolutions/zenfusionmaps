@@ -59,6 +59,6 @@
       "@doc_dev_doxygen"
     ],
     "doc_dev_doxygen": "cd build/doxygen; doxygen zenfusionmaps.doxyfile",
-    "read_doc_dev": "xdg-open doc/code/phpdoc/index.html"
+    "read_doc_dev": "xdg-open build/html/index.html"
   }
 }
