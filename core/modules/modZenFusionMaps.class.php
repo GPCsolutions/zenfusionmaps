@@ -2,7 +2,7 @@
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
  * Copyright (C) 2013       Cédric Salvador     <csalvador@gpcsolutions.fr>
- * Copyright (C) 2014-2016  Raphaël Doursenaud  <rdoursenaud@gpcsolutions.fr>
+ * Copyright (C) 2014-2017  Raphaël Doursenaud  <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
