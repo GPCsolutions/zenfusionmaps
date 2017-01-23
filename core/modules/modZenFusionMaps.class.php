@@ -2,7 +2,7 @@
 /*
  * ZenFusion Maps - A Google Maps module for Dolibarr
  * Copyright (C) 2013       Cédric Salvador     <csalvador@gpcsolutions.fr>
- * Copyright (C) 2014-2016  Raphaël Doursenaud  <rdoursenaud@gpcsolutions.fr>
+ * Copyright (C) 2014-2017  Raphaël Doursenaud  <rdoursenaud@gpcsolutions.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,9 @@ include_once DOL_DOCUMENT_ROOT . "/core/modules/DolibarrModules.class.php";
 /**
  * Describes and activates Zenfusion Maps module
  */
+// @codingStandardsIgnoreStart Dolibarr modules classes need to start with a lower case.
 class modZenFusionMaps extends DolibarrModules
+// @codingStandardsIgnoreEnd
 {
 
     /**
@@ -62,7 +64,7 @@ class modZenFusionMaps extends DolibarrModules
         $this->descriptionlong = "Add links to Google Maps on addresses.";
         $this->editor_name = 'GPC.solutions';
         $this->editor_url = 'https://www.gpcsolutions.fr';
-        $this->version = '1.1.0';
+        $this->version = '1.2.0';
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         $this->special = 1; // Interface
         $this->picto = 'maps@zenfusionmaps';
